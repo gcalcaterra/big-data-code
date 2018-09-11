@@ -1,97 +1,87 @@
 namespace php manning.schema
 namespace java manning.schema
 
-union indic_is {
-  1: Id
-  2: Label
-  3: Status
-  4: Status_Modified
-  5: Notation
+
+#Nodes
+union InternetUseId {
+	1: string id
+}
+
+union IndividualTypeId {
+	1: string id
+}
+
+union GeographyId {
+	1: string id
 }
 
 
-union PersonID {
-  1: string cookie;
-  2: i64 user_id;
+#Edges
+struct FactsEdge {
+	1: required InternetUseId	internetUse;
+	2: required IndividualTypeId	individualType;
+	3: required GeographyId		geography;
+	4: String 	year;
+	5: i64		units;		
 }
 
-union PageID {
-  1: string url;
+
+#Properties
+struct ConceptProperties {
+	1: required String label;
+	2: required String status;
+	3: optional Date modified;
+	4: optional String notation;
 }
 
-struct Location {
-  1: optional string city;
-  2: optional string state;
-  3: optional string country;
+#InternetUse Properties
+union InternetUsePropertyValue {
+	1: ConceptProperties conceptProperties;
 }
 
-enum GenderType {
-  MALE = 1,
-  FEMALE = 2
+struct InternetUseProperty {
+	1: required InternetUseId id;
+	2: required InternetUsePropertyValue property;
+
+#IndividualType Properties
+union IndividualTypePropertyValue {
+	1: ConceptProperties conceptProperties;
 }
 
-union PersonPropertyValue {
-  1: string full_name;
-  2: GenderType gender;
-  3: Location location;
+struc IndividualTypeProperty {
+	1: required IndividualTypeId id;
+	2: required IndividualTypePropertyValue property;
 }
 
-struct PersonProperty {
-  1: required PersonID id;
-  2: required PersonPropertyValue property;
+#Geography Properties
+union GeographyPropertyValue {
+	1: ConceptProperties conceptProperties;
 }
 
-union PagePropertyValue {
-  1: i32 page_views;
+struc GeographyProperty {
+	1: required GeographyId id;
+	2: required GeographyPropertyValue property;
 }
 
-struct PageProperty {
-  1: required PageID id;
-  2: required PagePropertyValue property;
-}
-
-struct EquivEdge {
-  1: required PersonID id1;
-  2: required PersonID id2;
-}
-
-struct PageViewEdge {
-  1: required PersonID person;
-  2: required PageID page;
-  3: required i64 nonce;
-}
-
-enum Source {
-  SELF = 1,
-  BACKTYPE = 2
-}
-
-struct ExternalDataSystem {
-}
-
-struct PageViewSystem {
-}
-
-union OrigSystem {
-  1: PageViewSystem page_view;
-  2: ExternalDataSystem external_data;
+#Tying everything together
+union DataUnit {
+	1: InternetUseProperty internetUseProperty;
+	2: IndividualTypeProperty individualTypeProperty;
+	3: GeographyProperty geographyProperty;
+	4: FactsEdge factsEdge;
 }
 
 struct Pedigree {
-  1: required i32 true_as_of_secs;
-  2: required Source source;
-  3: required OrigSystem system;
+	1: required i32 trueAsOfSecs;
 }
-
-union DataUnit {
-  1: PersonProperty person_property;
-  2: PageProperty page_property;
-  3: EquivEdge equiv;
-  4: PageViewEdge page_view;
-}
-
 struct Data {
-  1: required Pedigree pedigree;
-  2: required DataUnit dataunit;
-}
+	1: required Pedigree pedigree;
+	2: required DataUnit dataUnit;
+} 
+
+
+
+
+
+
 
