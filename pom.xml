@@ -7,8 +7,8 @@
   <version>1.0.0-SNAPSHOT</version>
   <name>big-data-book</name>
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>test</testSourceDirectory>
+    <sourceDirectory>src/java</sourceDirectory>
+    <testSourceDirectory>src/java/manning/test</testSourceDirectory>
     <resources>
       <resource>
         <directory>resources</directory>
