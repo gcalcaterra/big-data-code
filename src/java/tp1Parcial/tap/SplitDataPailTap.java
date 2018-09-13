@@ -1,12 +1,13 @@
 package tp1Parcial.tap;
 
-import backtype.cascading.tap.PailTap;
-import backtype.hadoop.pail.PailSpec;
-import backtype.hadoop.pail.PailStructure;
+import com.backtype.cascading.tap.PailTap;
+import com.backtype.hadoop.pail.PailSpec;
+import com.backtype.hadoop.pail.PailStructure;
+import org.apache.thrift.TFieldIdEnum;
+import tp1Parcial.schema.DataUnit;
+
 import java.util.ArrayList;
 import java.util.List;
-import tp1Parcial.schema.DataUnit;
-import org.apache.thrift.TFieldIdEnum;
 
 
 public class SplitDataPailTap extends PailTap {
@@ -61,9 +62,9 @@ public class SplitDataPailTap extends PailTap {
     }
 
     protected static List<String>[] toAttrs(DataUnit._Fields[] spec) {
-        if(spec==null) return null;
+        if (spec == null) return null;
         List<String>[] ret = new List[spec.length];
-        for(int i=0; i<spec.length; i++) {
+        for (int i = 0; i < spec.length; i++) {
             List<String> a = new ArrayList<String>();
             a.add("" + spec[i].getThriftFieldId());
             ret[i] = a;
@@ -72,9 +73,9 @@ public class SplitDataPailTap extends PailTap {
     }
 
     protected static List<String>[] toAttrs(int[] spec) {
-        if(spec==null) return null;
+        if (spec == null) return null;
         List<String>[] ret = new List[spec.length];
-        for(int i=0; i<spec.length; i++) {
+        for (int i = 0; i < spec.length; i++) {
             List<String> a = new ArrayList<String>();
             a.add("" + spec[i]);
             ret[i] = a;
@@ -83,12 +84,12 @@ public class SplitDataPailTap extends PailTap {
     }
 
     protected static List<String>[] toAttrs(List<TFieldIdEnum>[] spec) {
-        if(spec==null) return null;
+        if (spec == null) return null;
         List<String>[] ret = new List[spec.length];
-        for(int i=0; i<spec.length; i++) {
+        for (int i = 0; i < spec.length; i++) {
             List<String> a = new ArrayList<String>();
             List<TFieldIdEnum> conv = spec[i];
-            for(TFieldIdEnum j: conv) {
+            for (TFieldIdEnum j : conv) {
                 a.add("" + j.getThriftFieldId());
             }
             ret[i] = a;

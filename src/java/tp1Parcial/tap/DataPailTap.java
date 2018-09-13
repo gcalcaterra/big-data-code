@@ -1,9 +1,8 @@
 package tp1Parcial.tap;
 
-import backtype.cascading.tap.PailTap;
-import backtype.hadoop.pail.PailSpec;
-import backtype.hadoop.pail.PailStructure;
-
+import com.backtype.cascading.tap.PailTap;
+import com.backtype.hadoop.pail.PailSpec;
+import com.backtype.hadoop.pail.PailStructure;
 
 public class DataPailTap extends PailTap {
     public static class DataPailTapOptions {

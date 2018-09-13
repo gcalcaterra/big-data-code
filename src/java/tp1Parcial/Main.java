@@ -1,12 +1,12 @@
 package tp1Parcial;
 
-import backtype.hadoop.pail.Pail;
-import tp1Parcial.batchlayer.BatchWorkflow;
-import tp1Parcial.tap.DataPailStructure;
-import tp1Parcial.tap.SplitDataPailStructure;
+import com.backtype.hadoop.pail.Pail;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import tp1Parcial.batchlayer.BatchWorkflow;
+import tp1Parcial.tap.DataPailStructure;
+import tp1Parcial.tap.SplitDataPailStructure;
 
 import static tp1Parcial.batchlayer.BatchWorkflow.batchWorkflow;
 import static tp1Parcial.test.Data.makeEquiv;

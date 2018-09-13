@@ -1,55 +1,55 @@
 package tp1Parcial.tap;
 
-import backtype.hadoop.pail.PailStructure;
-import java.util.Collections;
-import java.util.List;
+import com.backtype.hadoop.pail.PailStructure;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TDeserializer;
 import org.apache.thrift.TException;
 import org.apache.thrift.TSerializer;
 
-public abstract class ThriftPailStructure<T extends Comparable> 
-  implements PailStructure<T> 
-{
-  protected abstract T createThriftObject();
+import java.util.Collections;
+import java.util.List;
 
-  private transient TDeserializer des;
+public abstract class ThriftPailStructure<T extends Comparable>
+        implements PailStructure<T> {
+    protected abstract T createThriftObject();
 
-  private TDeserializer getDeserializer() {
-    if(des==null) des = new TDeserializer();
-    return des;
-  }
+    private transient TDeserializer des;
 
-  public T deserialize(byte[] record) {
-    T ret = createThriftObject();
-    try {
-      getDeserializer().deserialize((TBase)ret, record);
-    } catch (TException e) {
-      throw new RuntimeException(e);
+    private TDeserializer getDeserializer() {
+        if (des == null) des = new TDeserializer();
+        return des;
     }
-    return ret;
-  }
 
-  private transient TSerializer ser;
-
-  private TSerializer getSerializer() {
-    if(ser==null) ser = new TSerializer();
-    return ser;
-  }
-
-  public byte[] serialize(T obj) {
-    try {
-      return getSerializer().serialize((TBase)obj);
-    } catch (TException e) {
-      throw new RuntimeException(e);
+    public T deserialize(byte[] record) {
+        T ret = createThriftObject();
+        try {
+            getDeserializer().deserialize((TBase) ret, record);
+        } catch (TException e) {
+            throw new RuntimeException(e);
+        }
+        return ret;
     }
-  }
 
-  public boolean isValidTarget(String... dirs) {
-    return true;
-  }
+    private transient TSerializer ser;
 
-  public List<String> getTarget(T object) {
-    return Collections.EMPTY_LIST;
-  }
+    private TSerializer getSerializer() {
+        if (ser == null) ser = new TSerializer();
+        return ser;
+    }
+
+    public byte[] serialize(T obj) {
+        try {
+            return getSerializer().serialize((TBase) obj);
+        } catch (TException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isValidTarget(String... dirs) {
+        return true;
+    }
+
+    public List<String> getTarget(T object) {
+        return Collections.EMPTY_LIST;
+    }
 }

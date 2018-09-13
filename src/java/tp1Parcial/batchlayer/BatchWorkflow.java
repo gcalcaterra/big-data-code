@@ -1,19 +1,19 @@
 package tp1Parcial.batchlayer;
 
-import backtype.cascading.tap.PailTap;
-import backtype.cascading.tap.PailTap.PailTapOptions;
-import backtype.hadoop.pail.Pail;
-import backtype.hadoop.pail.PailSpec;
-import backtype.hadoop.pail.PailStructure;
 import cascalog.ops.IdentityBuffer;
 import cascalog.ops.RandLong;
+import com.backtype.cascading.tap.PailTap;
+import com.backtype.cascading.tap.PailTap.PailTapOptions;
+import com.backtype.hadoop.pail.Pail;
+import com.backtype.hadoop.pail.PailSpec;
+import com.backtype.hadoop.pail.PailStructure;
 import jcascalog.Api;
 import jcascalog.Subquery;
-import tp1Parcial.tap.DataPailStructure;
-import tp1Parcial.tap.SplitDataPailStructure;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import tp1Parcial.tap.DataPailStructure;
+import tp1Parcial.tap.SplitDataPailStructure;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * The entire batch layer for ... This is a purely recomputation
- * based implementation. Additional efficiency can be achieved by adding an 
+ * based implementation. Additional efficiency can be achieved by adding an
  * incremental batch layer as discussed in Chapter 18.
  */
 @SuppressWarnings("unchecked")
@@ -48,23 +48,24 @@ public class BatchWorkflow {
         FileSystem fs = FileSystem.get(new Configuration());
         fs.delete(new Path(TEMP_ROOT), true);
         fs.mkdirs(new Path(TEMP_ROOT));
+        String snapshotPath = TEMP_ROOT + "newDataSnapshot";
 
-        Pail snapshotPail = newDataPail.snapshot(TEMP_ROOT + "newDataSnapshot");
-        appendNewDataToMasterDataPail(masterPail, snapshotPail);
+        Pail snapshotPail = newDataPail.snapshot(snapshotPath);
+        appendNewDataToMasterDataPail(masterPail, snapshotPath);
         newDataPail.deleteSnapshot(snapshotPail);
     }
 
     public static void appendNewDataToMasterDataPail(Pail masterPail,
-                                                     Pail snapshotPail) throws IOException {
-        Pail shreddedPail = shred(snapshotPail);
+                                                     String snapshotPath) throws IOException {
+        Pail shreddedPail = shred(snapshotPath);
         masterPail.absorb(shreddedPail);
     }
 
 
-    public static Pail shred(Pail snapshotPail) throws IOException {
+    public static Pail shred(String dataPath) throws IOException {
         String shreddedPath = TEMP_ROOT + "shredded";
 
-        PailTap source = dataTap(snapshotPail.getRoot());
+        PailTap source = dataTap(dataPath);
         PailTap sink = splitDataTap(shreddedPath);
 
         Subquery reduced = new Subquery("?rand", "?data")
@@ -82,25 +83,25 @@ public class BatchWorkflow {
     }
 
     public static void setApplicationConf() {
-      Map conf = new HashMap();
-      String sers = "backtype.hadoop.ThriftSerialization";
-      sers += ",";
-      sers += "org.apache.hadoop.io.serializer.WritableSerialization";
-      conf.put("io.serializations", sers);
-      Api.setApplicationConf(conf);
+        Map conf = new HashMap();
+        String sers = "backtype.hadoop.ThriftSerialization";
+        sers += ",";
+        sers += "org.apache.hadoop.io.serializer.WritableSerialization";
+        conf.put("io.serializations", sers);
+        Api.setApplicationConf(conf);
     }
 
     public static PailTap splitDataTap(String path) {
         PailTapOptions opts = new PailTapOptions();
         opts.spec = new PailSpec(
-                      (PailStructure) new SplitDataPailStructure());
+                (PailStructure) new SplitDataPailStructure());
         return new PailTap(path, opts);
     }
 
     public static PailTap dataTap(String path) {
         PailTapOptions opts = new PailTapOptions();
         opts.spec = new PailSpec(
-                      (PailStructure) new DataPailStructure());
+                (PailStructure) new DataPailStructure());
         return new PailTap(path, opts);
     }
 }
