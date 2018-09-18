@@ -9,8 +9,8 @@ import tp1Parcial.tap.DataPailStructure;
 import tp1Parcial.tap.SplitDataPailStructure;
 
 import static tp1Parcial.batchlayer.BatchWorkflow.batchWorkflow;
-import static tp1Parcial.test.Data.makeEquiv;
-import static tp1Parcial.test.Data.makePageview;
+//import static tp1Parcial.test.Data.makeEquiv;
+//import static tp1Parcial.test.Data.makePageview;
 
 public class Main {
     public static void main(String args[]) throws Exception {
@@ -31,18 +31,18 @@ public class Main {
         Pail.TypedRecordOutputStream os = newPail.openWrite();
 
         //Aca tiene que cargar los datos de nuestro archivo...
-        os.writeObject(makePageview(1, "http://foo.com/post1", 60));
-        os.writeObject(makePageview(3, "http://foo.com/post1", 62));
-        os.writeObject(makePageview(1, "http://foo.com/post1", 4000));
-        os.writeObject(makePageview(1, "http://foo.com/post2", 4000));
-        os.writeObject(makePageview(1, "http://foo.com/post2", 10000));
-        os.writeObject(makePageview(5, "http://foo.com/post3", 10600));
-
-        os.writeObject(makeEquiv(1, 3));
-        os.writeObject(makeEquiv(3, 5));
-
-        os.writeObject(makePageview(2, "http://foo.com/post1", 60));
-        os.writeObject(makePageview(2, "http://foo.com/post3", 62));
+//        os.writeObject(makePageview(1, "http://foo.com/post1", 60));
+//        os.writeObject(makePageview(3, "http://foo.com/post1", 62));
+//        os.writeObject(makePageview(1, "http://foo.com/post1", 4000));
+//        os.writeObject(makePageview(1, "http://foo.com/post2", 4000));
+//        os.writeObject(makePageview(1, "http://foo.com/post2", 10000));
+//        os.writeObject(makePageview(5, "http://foo.com/post3", 10600));
+//
+//        os.writeObject(makeEquiv(1, 3));
+//        os.writeObject(makeEquiv(3, 5));
+//
+//        os.writeObject(makePageview(2, "http://foo.com/post1", 60));
+//        os.writeObject(makePageview(2, "http://foo.com/post3", 62));
 
         os.close();
 
