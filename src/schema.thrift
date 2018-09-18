@@ -1,5 +1,5 @@
 namespace php manning.schema
-namespace java manning.schema
+namespace java tp1Parcial.schema
 
 
 #Nodes
@@ -22,7 +22,7 @@ struct FactsEdge {
 	2: required IndividualTypeId	individualType;
 	3: required GeographyId		geography;
 	4: string 	year;
-	5: i64		units;		
+	5: i32		units;		
 }
 
 
