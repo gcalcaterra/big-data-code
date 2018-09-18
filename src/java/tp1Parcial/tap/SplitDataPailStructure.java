@@ -127,7 +127,7 @@ public class SplitDataPailStructure extends DataPailStructure {
     @Override
     public List<String> getTarget(Data object) {
         List<String> ret = new ArrayList<String>();
-        DataUnit du = object.get_dataunit();
+        DataUnit du = object.get_dataUnit();
         short id = du.getSetField().getThriftFieldId();
         ret.add("" + id);
         validFieldMap.get(id).fillTarget(ret, du.getFieldValue());
