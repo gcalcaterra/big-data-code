@@ -1,11 +1,15 @@
+#!/usr/bin/env bash
 #Borra los datos y la salida del hdfs para que no cree conflicto si ya existe
-hdfs dfs -rm /internet-use-data-*
+hdfs dfs -rm -R /internet
 
-#Copia el archivo con los datos al hdfs
-hdfs dfs -copyFromLocal ../../../data/internet-use-data-2016.csv /internet-use-data-2016
+#Crea el directorio /internet en el HDFS
+hdfs dfs -mkdir -p /internet
+
+#Copia los archivos del directorio local /data al directorio /internet del HDFS
+hdfs dfs -copyFromLocal ../../../data/* /internet
 
 #Muestra la salida del programa
 #echo Salida de la carga de datos en bruto
 #hdfs dfs -cat /internet-use-data*
 echo Verificacion del archivo cargado en el hdfs:
-hdfs dfs -ls /internet-use-data-2016
+hdfs dfs -ls /internet
