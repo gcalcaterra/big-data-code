@@ -113,12 +113,42 @@ public class SplitDataPailStructure extends DataPailStructure {
 
     @Override
     public boolean isValidTarget(String[] dirs) {
-        if (dirs.length == 0) return false;
+        if (dirs.length < 2) return false;
         try {
             short id = Short.parseShort(dirs[0]);
             FieldStructure s = validFieldMap.get(id);
             if (s == null) return false;
-            else return s.isValidTarget(dirs);
+            if (!s.isValidTarget(dirs)) return false;
+
+            if (s instanceof EdgeStructure) {
+                String fieldName = dirs[1];
+                //Agregar aquí los criterios de particionamiento horizontal (Edges)
+                switch (fieldName) {
+                    case ("factsEdge"):
+                        if (dirs.length < 3) return false;
+                        int year = Integer.parseInt(dirs[2]);
+                        return 1900 < year && year < 2100;
+                    default:
+                        return false;
+                }
+            }
+
+            else if (s instanceof PropertyStructure){
+                String fieldName = dirs[1];
+                //Agregar aquí los criterios de particionamiento horizontal (Properties)
+                switch (fieldName) {
+                    case ("internetUseProperty"):
+                        return true;
+                    case ("individualTypeProperty"):
+                        return true;
+                    case ("geographyProperty"):
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+            return true;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -126,10 +156,38 @@ public class SplitDataPailStructure extends DataPailStructure {
 
     @Override
     public List<String> getTarget(Data object) {
-        List<String> ret = new ArrayList<String>();
+        List<String> ret = new ArrayList<>();
         DataUnit du = object.get_dataUnit();
-        short id = du.getSetField().getThriftFieldId();
-        ret.add("" + id);
+        DataUnit._Fields setField = du.getSetField();
+
+        short id = setField.getThriftFieldId();
+        ret.add(Short.toString(id));
+
+        String fieldName = setField.getFieldName();
+        ret.add(fieldName);
+
+        //Agregar aquí los criterios de particionamiento horizontal
+        switch (fieldName) {
+            /*
+            * case ("xxx"):
+            *   ret.add("criterio_de_particionamiento_1")
+            *   ret.add("criterio_de_particionamiento_2")
+            *   ...
+            * */
+            case ("factsEdge"):
+                int year = du.get_factsEdge().get_year();
+                ret.add(Integer.toString(year));
+                break;
+            /*
+            case ("internetUseProperty"):
+                break;
+            case ("individualTypeProperty"):
+                break;
+            case("geographyProperty"):
+                break;
+            */
+        }
+
         validFieldMap.get(id).fillTarget(ret, du.getFieldValue());
         return ret;
     }

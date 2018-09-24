@@ -1,8 +1,6 @@
 package tp1Parcial.test;
 
 
-import com.sun.jersey.api.model.Parameter.Source;
-
 import tp1Parcial.schema.*;
 
 public class DataProcess {
@@ -16,19 +14,24 @@ public class DataProcess {
 //    }
     
 
-
-	public static Pedigree makePedigree(int timeSecs) {
+	public static Pedigree makePedigree(long timeSecs) {
     	return new Pedigree(timeSecs);
     }
 
     
-    public static Data makeFacts(int timeSecs, InternetUseId internetUseId, IndividualTypeId individualType, GeographyId geography, String year, int units) {
+    public static Data makeFacts(long timeSecs, String internetUseId, String individualTypeId, String geographyId, int year, int units) {
     	return new Data(makePedigree(timeSecs),
     			DataUnit.factsEdge(
-    					new FactsEdge(internetUseId, individualType, geography, year, units)
+    					new FactsEdge(
+								InternetUseId.id(internetUseId),
+								IndividualTypeId.id(individualTypeId),
+								GeographyId.id(geographyId),
+								year,
+								units
+						)
     				));
 	}
-    
+
 //    public static tp1Parcial.schema.Data makePageview(int userid, String url, int timeSecs) {
 //        return new tp1Parcial.schema.Data(makePedigree(timeSecs),
 //                DataUnit.page_view(

@@ -1,4 +1,4 @@
-namespace php manning.schema
+namespace php tp1Parcial.schema
 namespace java tp1Parcial.schema
 
 
@@ -21,8 +21,8 @@ struct FactsEdge {
 	1: required InternetUseId	internetUse;
 	2: required IndividualTypeId	individualType;
 	3: required GeographyId		geography;
-	4: string 	year;
-	5: i32		units;		
+	4: i32 	year;
+	5: i32	units;
 }
 
 
@@ -73,7 +73,7 @@ union DataUnit {
 }
 
 struct Pedigree {
-	1: required i32 trueAsOfSecs;
+	1: required i64 trueAsOfSecs;
 }
 struct Data {
 	1: required Pedigree pedigree;
