@@ -28,7 +28,6 @@ import java.util.Map;
 public class BatchWorkflow {
     public static final String ROOT = "/tmp/root/";
     public static final String DATA_ROOT = ROOT + "data/";
-    public static final String OUTPUTS_ROOT = ROOT + "outputs/";
     public static final String MASTER_ROOT = DATA_ROOT + "master";
     public static final String NEW_ROOT = DATA_ROOT + "new";
     public static final String TEMP_ROOT = "/tmp/temp/";
