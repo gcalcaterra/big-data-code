@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
+
 import org.apache.thrift.scheme.TupleScheme;
 import org.apache.thrift.protocol.TTupleProtocol;
 import org.apache.thrift.protocol.TProtocolException;
@@ -32,25 +33,25 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.io.Serializable, Cloneable, Comparable<Data> {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("Data");
+public class IndividualTypeProperty implements org.apache.thrift.TBase<IndividualTypeProperty, IndividualTypeProperty._Fields>, java.io.Serializable, Cloneable, Comparable<IndividualTypeProperty> {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("IndividualTypeProperty");
 
-  private static final org.apache.thrift.protocol.TField PEDIGREE_FIELD_DESC = new org.apache.thrift.protocol.TField("pedigree", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-  private static final org.apache.thrift.protocol.TField DATA_UNIT_FIELD_DESC = new org.apache.thrift.protocol.TField("dataUnit", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+  private static final org.apache.thrift.protocol.TField PROPERTY_FIELD_DESC = new org.apache.thrift.protocol.TField("property", org.apache.thrift.protocol.TType.STRUCT, (short)2);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
-    schemes.put(StandardScheme.class, new DataStandardSchemeFactory());
-    schemes.put(TupleScheme.class, new DataTupleSchemeFactory());
+    schemes.put(StandardScheme.class, new IndividualTypePropertyStandardSchemeFactory());
+    schemes.put(TupleScheme.class, new IndividualTypePropertyTupleSchemeFactory());
   }
 
-  private Pedigree pedigree; // required
-  private DataUnit dataUnit; // required
+  private IndividualTypeId id; // required
+  private IndividualTypePropertyValue property; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    PEDIGREE((short)1, "pedigree"),
-    DATA_UNIT((short)2, "dataUnit");
+    ID((short)1, "id"),
+    PROPERTY((short)2, "property");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -65,10 +66,10 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // PEDIGREE
-          return PEDIGREE;
-        case 2: // DATA_UNIT
-          return DATA_UNIT;
+        case 1: // ID
+          return ID;
+        case 2: // PROPERTY
+          return PROPERTY;
         default:
           return null;
       }
@@ -112,109 +113,109 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.PEDIGREE, new org.apache.thrift.meta_data.FieldMetaData("pedigree", org.apache.thrift.TFieldRequirementType.REQUIRED, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Pedigree.class)));
-    tmpMap.put(_Fields.DATA_UNIT, new org.apache.thrift.meta_data.FieldMetaData("dataUnit", org.apache.thrift.TFieldRequirementType.REQUIRED, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, DataUnit.class)));
+    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, IndividualTypeId.class)));
+    tmpMap.put(_Fields.PROPERTY, new org.apache.thrift.meta_data.FieldMetaData("property", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, IndividualTypePropertyValue.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Data.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(IndividualTypeProperty.class, metaDataMap);
   }
 
-  public Data() {
+  public IndividualTypeProperty() {
   }
 
-  public Data(
-    Pedigree pedigree,
-    DataUnit dataUnit)
+  public IndividualTypeProperty(
+    IndividualTypeId id,
+    IndividualTypePropertyValue property)
   {
     this();
-    this.pedigree = pedigree;
-    this.dataUnit = dataUnit;
+    this.id = id;
+    this.property = property;
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
-  public Data(Data other) {
-    if (other.is_set_pedigree()) {
-      this.pedigree = new Pedigree(other.pedigree);
+  public IndividualTypeProperty(IndividualTypeProperty other) {
+    if (other.is_set_id()) {
+      this.id = new IndividualTypeId(other.id);
     }
-    if (other.is_set_dataUnit()) {
-      this.dataUnit = new DataUnit(other.dataUnit);
+    if (other.is_set_property()) {
+      this.property = new IndividualTypePropertyValue(other.property);
     }
   }
 
-  public Data deepCopy() {
-    return new Data(this);
+  public IndividualTypeProperty deepCopy() {
+    return new IndividualTypeProperty(this);
   }
 
   @Override
   public void clear() {
-    this.pedigree = null;
-    this.dataUnit = null;
+    this.id = null;
+    this.property = null;
   }
 
-  public Pedigree get_pedigree() {
-    return this.pedigree;
+  public IndividualTypeId get_id() {
+    return this.id;
   }
 
-  public void set_pedigree(Pedigree pedigree) {
-    this.pedigree = pedigree;
+  public void set_id(IndividualTypeId id) {
+    this.id = id;
   }
 
-  public void unset_pedigree() {
-    this.pedigree = null;
+  public void unset_id() {
+    this.id = null;
   }
 
-  /** Returns true if field pedigree is set (has been assigned a value) and false otherwise */
-  public boolean is_set_pedigree() {
-    return this.pedigree != null;
+  /** Returns true if field id is set (has been assigned a value) and false otherwise */
+  public boolean is_set_id() {
+    return this.id != null;
   }
 
-  public void set_pedigree_isSet(boolean value) {
+  public void set_id_isSet(boolean value) {
     if (!value) {
-      this.pedigree = null;
+      this.id = null;
     }
   }
 
-  public DataUnit get_dataUnit() {
-    return this.dataUnit;
+  public IndividualTypePropertyValue get_property() {
+    return this.property;
   }
 
-  public void set_dataUnit(DataUnit dataUnit) {
-    this.dataUnit = dataUnit;
+  public void set_property(IndividualTypePropertyValue property) {
+    this.property = property;
   }
 
-  public void unset_dataUnit() {
-    this.dataUnit = null;
+  public void unset_property() {
+    this.property = null;
   }
 
-  /** Returns true if field dataUnit is set (has been assigned a value) and false otherwise */
-  public boolean is_set_dataUnit() {
-    return this.dataUnit != null;
+  /** Returns true if field property is set (has been assigned a value) and false otherwise */
+  public boolean is_set_property() {
+    return this.property != null;
   }
 
-  public void set_dataUnit_isSet(boolean value) {
+  public void set_property_isSet(boolean value) {
     if (!value) {
-      this.dataUnit = null;
+      this.property = null;
     }
   }
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
-    case PEDIGREE:
+    case ID:
       if (value == null) {
-        unset_pedigree();
+        unset_id();
       } else {
-        set_pedigree((Pedigree)value);
+        set_id((IndividualTypeId)value);
       }
       break;
 
-    case DATA_UNIT:
+    case PROPERTY:
       if (value == null) {
-        unset_dataUnit();
+        unset_property();
       } else {
-        set_dataUnit((DataUnit)value);
+        set_property((IndividualTypePropertyValue)value);
       }
       break;
 
@@ -223,11 +224,11 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
-    case PEDIGREE:
-      return get_pedigree();
+    case ID:
+      return get_id();
 
-    case DATA_UNIT:
-      return get_dataUnit();
+    case PROPERTY:
+      return get_property();
 
     }
     throw new IllegalStateException();
@@ -240,10 +241,10 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
     }
 
     switch (field) {
-    case PEDIGREE:
-      return is_set_pedigree();
-    case DATA_UNIT:
-      return is_set_dataUnit();
+    case ID:
+      return is_set_id();
+    case PROPERTY:
+      return is_set_property();
     }
     throw new IllegalStateException();
   }
@@ -252,30 +253,30 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
   public boolean equals(Object that) {
     if (that == null)
       return false;
-    if (that instanceof Data)
-      return this.equals((Data)that);
+    if (that instanceof IndividualTypeProperty)
+      return this.equals((IndividualTypeProperty)that);
     return false;
   }
 
-  public boolean equals(Data that) {
+  public boolean equals(IndividualTypeProperty that) {
     if (that == null)
       return false;
 
-    boolean this_present_pedigree = true && this.is_set_pedigree();
-    boolean that_present_pedigree = true && that.is_set_pedigree();
-    if (this_present_pedigree || that_present_pedigree) {
-      if (!(this_present_pedigree && that_present_pedigree))
+    boolean this_present_id = true && this.is_set_id();
+    boolean that_present_id = true && that.is_set_id();
+    if (this_present_id || that_present_id) {
+      if (!(this_present_id && that_present_id))
         return false;
-      if (!this.pedigree.equals(that.pedigree))
+      if (!this.id.equals(that.id))
         return false;
     }
 
-    boolean this_present_dataUnit = true && this.is_set_dataUnit();
-    boolean that_present_dataUnit = true && that.is_set_dataUnit();
-    if (this_present_dataUnit || that_present_dataUnit) {
-      if (!(this_present_dataUnit && that_present_dataUnit))
+    boolean this_present_property = true && this.is_set_property();
+    boolean that_present_property = true && that.is_set_property();
+    if (this_present_property || that_present_property) {
+      if (!(this_present_property && that_present_property))
         return false;
-      if (!this.dataUnit.equals(that.dataUnit))
+      if (!this.property.equals(that.property))
         return false;
     }
 
@@ -286,43 +287,43 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
   public int hashCode() {
     HashCodeBuilder builder = new HashCodeBuilder();
 
-    boolean present_pedigree = true && (is_set_pedigree());
-    builder.append(present_pedigree);
-    if (present_pedigree)
-      builder.append(pedigree);
+    boolean present_id = true && (is_set_id());
+    builder.append(present_id);
+    if (present_id)
+      builder.append(id);
 
-    boolean present_dataUnit = true && (is_set_dataUnit());
-    builder.append(present_dataUnit);
-    if (present_dataUnit)
-      builder.append(dataUnit);
+    boolean present_property = true && (is_set_property());
+    builder.append(present_property);
+    if (present_property)
+      builder.append(property);
 
     return builder.toHashCode();
   }
 
   @Override
-  public int compareTo(Data other) {
+  public int compareTo(IndividualTypeProperty other) {
     if (!getClass().equals(other.getClass())) {
       return getClass().getName().compareTo(other.getClass().getName());
     }
 
     int lastComparison = 0;
 
-    lastComparison = Boolean.valueOf(is_set_pedigree()).compareTo(other.is_set_pedigree());
+    lastComparison = Boolean.valueOf(is_set_id()).compareTo(other.is_set_id());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (is_set_pedigree()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.pedigree, other.pedigree);
+    if (is_set_id()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
       if (lastComparison != 0) {
         return lastComparison;
       }
     }
-    lastComparison = Boolean.valueOf(is_set_dataUnit()).compareTo(other.is_set_dataUnit());
+    lastComparison = Boolean.valueOf(is_set_property()).compareTo(other.is_set_property());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (is_set_dataUnit()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.dataUnit, other.dataUnit);
+    if (is_set_property()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.property, other.property);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -344,22 +345,22 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("Data(");
+    StringBuilder sb = new StringBuilder("IndividualTypeProperty(");
     boolean first = true;
 
-    sb.append("pedigree:");
-    if (this.pedigree == null) {
+    sb.append("id:");
+    if (this.id == null) {
       sb.append("null");
     } else {
-      sb.append(this.pedigree);
+      sb.append(this.id);
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("dataUnit:");
-    if (this.dataUnit == null) {
+    sb.append("property:");
+    if (this.property == null) {
       sb.append("null");
     } else {
-      sb.append(this.dataUnit);
+      sb.append(this.property);
     }
     first = false;
     sb.append(")");
@@ -368,18 +369,15 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
-    if (!is_set_pedigree()) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'pedigree' is unset! Struct:" + toString());
+    if (!is_set_id()) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'id' is unset! Struct:" + toString());
     }
 
-    if (!is_set_dataUnit()) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'dataUnit' is unset! Struct:" + toString());
+    if (!is_set_property()) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'property' is unset! Struct:" + toString());
     }
 
     // check for sub-struct validity
-    if (pedigree != null) {
-      pedigree.validate();
-    }
   }
 
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
@@ -398,15 +396,15 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
     }
   }
 
-  private static class DataStandardSchemeFactory implements SchemeFactory {
-    public DataStandardScheme getScheme() {
-      return new DataStandardScheme();
+  private static class IndividualTypePropertyStandardSchemeFactory implements SchemeFactory {
+    public IndividualTypePropertyStandardScheme getScheme() {
+      return new IndividualTypePropertyStandardScheme();
     }
   }
 
-  private static class DataStandardScheme extends StandardScheme<Data> {
+  private static class IndividualTypePropertyStandardScheme extends StandardScheme<IndividualTypeProperty> {
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot, Data struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol iprot, IndividualTypeProperty struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TField schemeField;
       iprot.readStructBegin();
       while (true)
@@ -416,20 +414,20 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
           break;
         }
         switch (schemeField.id) {
-          case 1: // PEDIGREE
+          case 1: // ID
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.pedigree = new Pedigree();
-              struct.pedigree.read(iprot);
-              struct.set_pedigree_isSet(true);
+              struct.id = new IndividualTypeId();
+              struct.id.read(iprot);
+              struct.set_id_isSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // DATA_UNIT
+          case 2: // PROPERTY
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.dataUnit = new DataUnit();
-              struct.dataUnit.read(iprot);
-              struct.set_dataUnit_isSet(true);
+              struct.property = new IndividualTypePropertyValue();
+              struct.property.read(iprot);
+              struct.set_property_isSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -443,18 +441,18 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
       struct.validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot, Data struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol oprot, IndividualTypeProperty struct) throws org.apache.thrift.TException {
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.pedigree != null) {
-        oprot.writeFieldBegin(PEDIGREE_FIELD_DESC);
-        struct.pedigree.write(oprot);
+      if (struct.id != null) {
+        oprot.writeFieldBegin(ID_FIELD_DESC);
+        struct.id.write(oprot);
         oprot.writeFieldEnd();
       }
-      if (struct.dataUnit != null) {
-        oprot.writeFieldBegin(DATA_UNIT_FIELD_DESC);
-        struct.dataUnit.write(oprot);
+      if (struct.property != null) {
+        oprot.writeFieldBegin(PROPERTY_FIELD_DESC);
+        struct.property.write(oprot);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -463,30 +461,30 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
 
   }
 
-  private static class DataTupleSchemeFactory implements SchemeFactory {
-    public DataTupleScheme getScheme() {
-      return new DataTupleScheme();
+  private static class IndividualTypePropertyTupleSchemeFactory implements SchemeFactory {
+    public IndividualTypePropertyTupleScheme getScheme() {
+      return new IndividualTypePropertyTupleScheme();
     }
   }
 
-  private static class DataTupleScheme extends TupleScheme<Data> {
+  private static class IndividualTypePropertyTupleScheme extends TupleScheme<IndividualTypeProperty> {
 
     @Override
-    public void write(org.apache.thrift.protocol.TProtocol prot, Data struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol prot, IndividualTypeProperty struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
-      struct.pedigree.write(oprot);
-      struct.dataUnit.write(oprot);
+      struct.id.write(oprot);
+      struct.property.write(oprot);
     }
 
     @Override
-    public void read(org.apache.thrift.protocol.TProtocol prot, Data struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol prot, IndividualTypeProperty struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      struct.pedigree = new Pedigree();
-      struct.pedigree.read(iprot);
-      struct.set_pedigree_isSet(true);
-      struct.dataUnit = new DataUnit();
-      struct.dataUnit.read(iprot);
-      struct.set_dataUnit_isSet(true);
+      struct.id = new IndividualTypeId();
+      struct.id.read(iprot);
+      struct.set_id_isSet(true);
+      struct.property = new IndividualTypePropertyValue();
+      struct.property.read(iprot);
+      struct.set_property_isSet(true);
     }
   }
 
