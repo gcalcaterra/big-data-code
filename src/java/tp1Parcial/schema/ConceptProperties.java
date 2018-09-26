@@ -6,7 +6,6 @@
  */
 package tp1Parcial.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -399,29 +398,7 @@ public class ConceptProperties implements org.apache.thrift.TBase<ConceptPropert
 
   @Override
   public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-
-    boolean present_label = true && (is_set_label());
-    builder.append(present_label);
-    if (present_label)
-      builder.append(label);
-
-    boolean present_status = true && (is_set_status());
-    builder.append(present_status);
-    if (present_status)
-      builder.append(status);
-
-    boolean present_modified = true && (is_set_modified());
-    builder.append(present_modified);
-    if (present_modified)
-      builder.append(modified);
-
-    boolean present_notation = true && (is_set_notation());
-    builder.append(present_notation);
-    if (present_notation)
-      builder.append(notation);
-
-    return builder.toHashCode();
+    return 0;
   }
 
   @Override

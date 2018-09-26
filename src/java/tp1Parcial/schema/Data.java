@@ -6,10 +6,10 @@
  */
 package tp1Parcial.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
+
 import org.apache.thrift.scheme.TupleScheme;
 import org.apache.thrift.protocol.TTupleProtocol;
 import org.apache.thrift.protocol.TProtocolException;
@@ -284,19 +284,7 @@ public class Data implements org.apache.thrift.TBase<Data, Data._Fields>, java.i
 
   @Override
   public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-
-    boolean present_pedigree = true && (is_set_pedigree());
-    builder.append(present_pedigree);
-    if (present_pedigree)
-      builder.append(pedigree);
-
-    boolean present_dataUnit = true && (is_set_dataUnit());
-    builder.append(present_dataUnit);
-    if (present_dataUnit)
-      builder.append(dataUnit);
-
-    return builder.toHashCode();
+    return 0;
   }
 
   @Override

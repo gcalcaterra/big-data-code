@@ -6,7 +6,6 @@
  */
 package tp1Parcial.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -271,22 +270,14 @@ public class InternetUsePropertyValue extends org.apache.thrift.TUnion<InternetU
   }
 
 
+  /**
+   * If you'd like this to perform more respectably, use the hashcode generator option.
+   */
   @Override
   public int hashCode() {
-    HashCodeBuilder hcb = new HashCodeBuilder();
-    hcb.append(this.getClass().getName());
-    org.apache.thrift.TFieldIdEnum setField = getSetField();
-    if (setField != null) {
-      hcb.append(setField.getThriftFieldId());
-      Object value = getFieldValue();
-      if (value instanceof org.apache.thrift.TEnum) {
-        hcb.append(((org.apache.thrift.TEnum)getFieldValue()).getValue());
-      } else {
-        hcb.append(value);
-      }
-    }
-    return hcb.toHashCode();
+    return 0;
   }
+
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
     try {
       write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));

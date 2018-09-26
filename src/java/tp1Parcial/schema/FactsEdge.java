@@ -6,7 +6,6 @@
  */
 package tp1Parcial.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -461,34 +460,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
 
   @Override
   public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-
-    boolean present_internetUse = true && (is_set_internetUse());
-    builder.append(present_internetUse);
-    if (present_internetUse)
-      builder.append(internetUse);
-
-    boolean present_individualType = true && (is_set_individualType());
-    builder.append(present_individualType);
-    if (present_individualType)
-      builder.append(individualType);
-
-    boolean present_geography = true && (is_set_geography());
-    builder.append(present_geography);
-    if (present_geography)
-      builder.append(geography);
-
-    boolean present_year = true;
-    builder.append(present_year);
-    if (present_year)
-      builder.append(year);
-
-    boolean present_units = true;
-    builder.append(present_units);
-    if (present_units)
-      builder.append(units);
-
-    return builder.toHashCode();
+    return 0;
   }
 
   @Override

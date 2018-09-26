@@ -95,7 +95,7 @@ public class Main {
             }
         }
     }
-
+//Lee los datos desde los archivos formateados y los imprime en salida estandar
     public static void showData() throws Exception {
         Pail masterPail = new Pail(MASTER_ROOT);
         Pail.PailIterator iterator = masterPail.iterator();

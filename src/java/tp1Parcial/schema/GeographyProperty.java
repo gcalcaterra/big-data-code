@@ -6,7 +6,6 @@
  */
 package tp1Parcial.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -285,19 +284,7 @@ public class GeographyProperty implements org.apache.thrift.TBase<GeographyPrope
 
   @Override
   public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-
-    boolean present_id = true && (is_set_id());
-    builder.append(present_id);
-    if (present_id)
-      builder.append(id);
-
-    boolean present_property = true && (is_set_property());
-    builder.append(present_property);
-    if (present_property)
-      builder.append(property);
-
-    return builder.toHashCode();
+    return 0;
   }
 
   @Override
