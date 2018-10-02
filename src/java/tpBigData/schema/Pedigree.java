@@ -6,7 +6,6 @@
  */
 package tpBigData.schema;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -217,14 +216,7 @@ public class Pedigree implements org.apache.thrift.TBase<Pedigree, Pedigree._Fie
 
   @Override
   public int hashCode() {
-    HashCodeBuilder builder = new HashCodeBuilder();
-
-    boolean present_trueAsOfSecs = true;
-    builder.append(present_trueAsOfSecs);
-    if (present_trueAsOfSecs)
-      builder.append(trueAsOfSecs);
-
-    return builder.toHashCode();
+    return 0;
   }
 
   @Override
