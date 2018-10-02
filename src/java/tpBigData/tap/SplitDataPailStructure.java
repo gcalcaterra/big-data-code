@@ -1,4 +1,4 @@
-package tp1Parcial.tap;
+package tpBigData.tap;
 
 import org.apache.thrift.TBase;
 import org.apache.thrift.TFieldIdEnum;
@@ -6,8 +6,8 @@ import org.apache.thrift.TUnion;
 import org.apache.thrift.meta_data.FieldMetaData;
 import org.apache.thrift.meta_data.FieldValueMetaData;
 import org.apache.thrift.meta_data.StructMetaData;
-import tp1Parcial.schema.Data;
-import tp1Parcial.schema.DataUnit;
+import tpBigData.schema.Data;
+import tpBigData.schema.DataUnit;
 
 import java.util.*;
 

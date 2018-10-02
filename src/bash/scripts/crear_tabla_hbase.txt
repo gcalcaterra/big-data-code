@@ -1,0 +1,13 @@
+Para  abrir el shell de hbase:
+=============================
+hbase shell
+
+Crear la tabla:
+===============
+create 'internetUse', 'internetUse_data'
+
+Mostrar los datos:
+====================
+scan 'internetUse'
+
+

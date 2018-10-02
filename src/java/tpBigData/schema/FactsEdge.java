@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package tp1Parcial.schema;
+package tpBigData.schema;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
@@ -13,25 +13,14 @@ import org.apache.thrift.scheme.StandardScheme;
 
 import org.apache.thrift.scheme.TupleScheme;
 import org.apache.thrift.protocol.TTupleProtocol;
-import org.apache.thrift.protocol.TProtocolException;
 import org.apache.thrift.EncodingUtils;
-import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
-import org.apache.thrift.server.AbstractNonblockingServer.*;
-import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.EnumMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.Collections;
 import java.util.BitSet;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._Fields>, java.io.Serializable, Cloneable, Comparable<FactsEdge> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("FactsEdge");
@@ -131,15 +120,15 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.INTERNET_USE, new org.apache.thrift.meta_data.FieldMetaData("internetUse", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.INTERNET_USE, new org.apache.thrift.meta_data.FieldMetaData("internetUse", org.apache.thrift.TFieldRequirementType.REQUIRED,
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, InternetUseId.class)));
-    tmpMap.put(_Fields.INDIVIDUAL_TYPE, new org.apache.thrift.meta_data.FieldMetaData("individualType", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.INDIVIDUAL_TYPE, new org.apache.thrift.meta_data.FieldMetaData("individualType", org.apache.thrift.TFieldRequirementType.REQUIRED,
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, IndividualTypeId.class)));
-    tmpMap.put(_Fields.GEOGRAPHY, new org.apache.thrift.meta_data.FieldMetaData("geography", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.GEOGRAPHY, new org.apache.thrift.meta_data.FieldMetaData("geography", org.apache.thrift.TFieldRequirementType.REQUIRED,
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, GeographyId.class)));
-    tmpMap.put(_Fields.YEAR, new org.apache.thrift.meta_data.FieldMetaData("year", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.YEAR, new org.apache.thrift.meta_data.FieldMetaData("year", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.UNITS, new org.apache.thrift.meta_data.FieldMetaData("units", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.UNITS, new org.apache.thrift.meta_data.FieldMetaData("units", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(FactsEdge.class, metaDataMap);
@@ -653,7 +642,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
       while (true)
       {
         schemeField = iprot.readFieldBegin();
-        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) {
           break;
         }
         switch (schemeField.id) {
@@ -662,7 +651,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
               struct.internetUse = new InternetUseId();
               struct.internetUse.read(iprot);
               struct.set_internetUse_isSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
@@ -671,7 +660,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
               struct.individualType = new IndividualTypeId();
               struct.individualType.read(iprot);
               struct.set_individualType_isSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
@@ -680,7 +669,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
               struct.geography = new GeographyId();
               struct.geography.read(iprot);
               struct.set_geography_isSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
@@ -688,7 +677,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.year = iprot.readI32();
               struct.set_year_isSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
@@ -696,7 +685,7 @@ public class FactsEdge implements org.apache.thrift.TBase<FactsEdge, FactsEdge._
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.units = iprot.readI32();
               struct.set_units_isSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;

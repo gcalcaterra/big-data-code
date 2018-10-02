@@ -4,37 +4,20 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package tp1Parcial.schema;
+package tpBigData.schema;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.thrift.scheme.IScheme;
-import org.apache.thrift.scheme.SchemeFactory;
-import org.apache.thrift.scheme.StandardScheme;
 
-import org.apache.thrift.scheme.TupleScheme;
-import org.apache.thrift.protocol.TTupleProtocol;
 import org.apache.thrift.protocol.TProtocolException;
-import org.apache.thrift.EncodingUtils;
-import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
-import org.apache.thrift.server.AbstractNonblockingServer.*;
-import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.EnumMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.Collections;
-import java.util.BitSet;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class GeographyPropertyValue extends org.apache.thrift.TUnion<GeographyPropertyValue, GeographyPropertyValue._Fields> {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("GeographyPropertyValue");
+public class IndividualTypePropertyValue extends org.apache.thrift.TUnion<IndividualTypePropertyValue, IndividualTypePropertyValue._Fields> {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("IndividualTypePropertyValue");
   private static final org.apache.thrift.protocol.TField CONCEPT_PROPERTIES_FIELD_DESC = new org.apache.thrift.protocol.TField("conceptProperties", org.apache.thrift.protocol.TType.STRUCT, (short)1);
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -98,29 +81,29 @@ public class GeographyPropertyValue extends org.apache.thrift.TUnion<GeographyPr
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.CONCEPT_PROPERTIES, new org.apache.thrift.meta_data.FieldMetaData("conceptProperties", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CONCEPT_PROPERTIES, new org.apache.thrift.meta_data.FieldMetaData("conceptProperties", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ConceptProperties.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(GeographyPropertyValue.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(IndividualTypePropertyValue.class, metaDataMap);
   }
 
-  public GeographyPropertyValue() {
+  public IndividualTypePropertyValue() {
     super();
   }
 
-  public GeographyPropertyValue(_Fields setField, Object value) {
+  public IndividualTypePropertyValue(_Fields setField, Object value) {
     super(setField, value);
   }
 
-  public GeographyPropertyValue(GeographyPropertyValue other) {
+  public IndividualTypePropertyValue(IndividualTypePropertyValue other) {
     super(other);
   }
-  public GeographyPropertyValue deepCopy() {
-    return new GeographyPropertyValue(this);
+  public IndividualTypePropertyValue deepCopy() {
+    return new IndividualTypePropertyValue(this);
   }
 
-  public static GeographyPropertyValue conceptProperties(ConceptProperties value) {
-    GeographyPropertyValue x = new GeographyPropertyValue();
+  public static IndividualTypePropertyValue conceptProperties(ConceptProperties value) {
+    IndividualTypePropertyValue x = new IndividualTypePropertyValue();
     x.set_conceptProperties(value);
     return x;
   }
@@ -250,19 +233,19 @@ public class GeographyPropertyValue extends org.apache.thrift.TUnion<GeographyPr
 
 
   public boolean equals(Object other) {
-    if (other instanceof GeographyPropertyValue) {
-      return equals((GeographyPropertyValue)other);
+    if (other instanceof IndividualTypePropertyValue) {
+      return equals((IndividualTypePropertyValue)other);
     } else {
       return false;
     }
   }
 
-  public boolean equals(GeographyPropertyValue other) {
+  public boolean equals(IndividualTypePropertyValue other) {
     return other != null && getSetField() == other.getSetField() && getFieldValue().equals(other.getFieldValue());
   }
 
   @Override
-  public int compareTo(GeographyPropertyValue other) {
+  public int compareTo(IndividualTypePropertyValue other) {
     int lastComparison = org.apache.thrift.TBaseHelper.compareTo(getSetField(), other.getSetField());
     if (lastComparison == 0) {
       return org.apache.thrift.TBaseHelper.compareTo(getFieldValue(), other.getFieldValue());

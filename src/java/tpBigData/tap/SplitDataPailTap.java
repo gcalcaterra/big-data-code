@@ -1,10 +1,10 @@
-package tp1Parcial.tap;
+package tpBigData.tap;
 
 import com.backtype.cascading.tap.PailTap;
 import com.backtype.hadoop.pail.PailSpec;
 import com.backtype.hadoop.pail.PailStructure;
 import org.apache.thrift.TFieldIdEnum;
-import tp1Parcial.schema.DataUnit;
+import tpBigData.schema.DataUnit;
 
 import java.util.ArrayList;
 import java.util.List;

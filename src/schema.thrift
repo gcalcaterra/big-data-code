@@ -1,5 +1,5 @@
-namespace php tp1Parcial.schema
-namespace java tp1Parcial.schema
+namespace php tpBigData.schema
+namespace java tpBigData.schema
 
 
 #Nodes
@@ -78,7 +78,7 @@ struct Pedigree {
 struct Data {
 	1: required Pedigree pedigree;
 	2: required DataUnit dataUnit;
-} 
+}
 
 
 

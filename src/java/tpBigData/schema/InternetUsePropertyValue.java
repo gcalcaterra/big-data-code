@@ -4,42 +4,25 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package tp1Parcial.schema;
+package tpBigData.schema;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.thrift.scheme.IScheme;
-import org.apache.thrift.scheme.SchemeFactory;
-import org.apache.thrift.scheme.StandardScheme;
 
-import org.apache.thrift.scheme.TupleScheme;
-import org.apache.thrift.protocol.TTupleProtocol;
 import org.apache.thrift.protocol.TProtocolException;
-import org.apache.thrift.EncodingUtils;
-import org.apache.thrift.TException;
-import org.apache.thrift.async.AsyncMethodCallback;
-import org.apache.thrift.server.AbstractNonblockingServer.*;
-import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.EnumMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.Collections;
-import java.util.BitSet;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId, IndividualTypeId._Fields> {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("IndividualTypeId");
-  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+public class InternetUsePropertyValue extends org.apache.thrift.TUnion<InternetUsePropertyValue, InternetUsePropertyValue._Fields> {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("InternetUsePropertyValue");
+  private static final org.apache.thrift.protocol.TField CONCEPT_PROPERTIES_FIELD_DESC = new org.apache.thrift.protocol.TField("conceptProperties", org.apache.thrift.protocol.TType.STRUCT, (short)1);
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    ID((short)1, "id");
+    CONCEPT_PROPERTIES((short)1, "conceptProperties");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -54,8 +37,8 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // ID
-          return ID;
+        case 1: // CONCEPT_PROPERTIES
+          return CONCEPT_PROPERTIES;
         default:
           return null;
       }
@@ -98,30 +81,30 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.CONCEPT_PROPERTIES, new org.apache.thrift.meta_data.FieldMetaData("conceptProperties", org.apache.thrift.TFieldRequirementType.DEFAULT,
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ConceptProperties.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(IndividualTypeId.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(InternetUsePropertyValue.class, metaDataMap);
   }
 
-  public IndividualTypeId() {
+  public InternetUsePropertyValue() {
     super();
   }
 
-  public IndividualTypeId(_Fields setField, Object value) {
+  public InternetUsePropertyValue(_Fields setField, Object value) {
     super(setField, value);
   }
 
-  public IndividualTypeId(IndividualTypeId other) {
+  public InternetUsePropertyValue(InternetUsePropertyValue other) {
     super(other);
   }
-  public IndividualTypeId deepCopy() {
-    return new IndividualTypeId(this);
+  public InternetUsePropertyValue deepCopy() {
+    return new InternetUsePropertyValue(this);
   }
 
-  public static IndividualTypeId id(String value) {
-    IndividualTypeId x = new IndividualTypeId();
-    x.set_id(value);
+  public static InternetUsePropertyValue conceptProperties(ConceptProperties value) {
+    InternetUsePropertyValue x = new InternetUsePropertyValue();
+    x.set_conceptProperties(value);
     return x;
   }
 
@@ -129,11 +112,11 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   @Override
   protected void checkType(_Fields setField, Object value) throws ClassCastException {
     switch (setField) {
-      case ID:
-        if (value instanceof String) {
+      case CONCEPT_PROPERTIES:
+        if (value instanceof ConceptProperties) {
           break;
         }
-        throw new ClassCastException("Was expecting value of type String for field 'id', but got " + value.getClass().getSimpleName());
+        throw new ClassCastException("Was expecting value of type ConceptProperties for field 'conceptProperties', but got " + value.getClass().getSimpleName());
       default:
         throw new IllegalArgumentException("Unknown field id " + setField);
     }
@@ -144,11 +127,12 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
     _Fields setField = _Fields.findByThriftId(field.id);
     if (setField != null) {
       switch (setField) {
-        case ID:
-          if (field.type == ID_FIELD_DESC.type) {
-            String id;
-            id = iprot.readString();
-            return id;
+        case CONCEPT_PROPERTIES:
+          if (field.type == CONCEPT_PROPERTIES_FIELD_DESC.type) {
+            ConceptProperties conceptProperties;
+            conceptProperties = new ConceptProperties();
+            conceptProperties.read(iprot);
+            return conceptProperties;
           } else {
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
@@ -165,9 +149,9 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   @Override
   protected void standardSchemeWriteValue(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
     switch (setField_) {
-      case ID:
-        String id = (String)value_;
-        oprot.writeString(id);
+      case CONCEPT_PROPERTIES:
+        ConceptProperties conceptProperties = (ConceptProperties)value_;
+        conceptProperties.write(oprot);
         return;
       default:
         throw new IllegalStateException("Cannot write union with unknown field " + setField_);
@@ -179,10 +163,11 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
     _Fields setField = _Fields.findByThriftId(fieldID);
     if (setField != null) {
       switch (setField) {
-        case ID:
-          String id;
-          id = iprot.readString();
-          return id;
+        case CONCEPT_PROPERTIES:
+          ConceptProperties conceptProperties;
+          conceptProperties = new ConceptProperties();
+          conceptProperties.read(iprot);
+          return conceptProperties;
         default:
           throw new IllegalStateException("setField wasn't null, but didn't match any of the case statements!");
       }
@@ -194,9 +179,9 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   @Override
   protected void tupleSchemeWriteValue(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
     switch (setField_) {
-      case ID:
-        String id = (String)value_;
-        oprot.writeString(id);
+      case CONCEPT_PROPERTIES:
+        ConceptProperties conceptProperties = (ConceptProperties)value_;
+        conceptProperties.write(oprot);
         return;
       default:
         throw new IllegalStateException("Cannot write union with unknown field " + setField_);
@@ -206,8 +191,8 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   @Override
   protected org.apache.thrift.protocol.TField getFieldDesc(_Fields setField) {
     switch (setField) {
-      case ID:
-        return ID_FIELD_DESC;
+      case CONCEPT_PROPERTIES:
+        return CONCEPT_PROPERTIES_FIELD_DESC;
       default:
         throw new IllegalArgumentException("Unknown field id " + setField);
     }
@@ -228,39 +213,39 @@ public class IndividualTypeId extends org.apache.thrift.TUnion<IndividualTypeId,
   }
 
 
-  public String get_id() {
-    if (getSetField() == _Fields.ID) {
-      return (String)getFieldValue();
+  public ConceptProperties get_conceptProperties() {
+    if (getSetField() == _Fields.CONCEPT_PROPERTIES) {
+      return (ConceptProperties)getFieldValue();
     } else {
-      throw new RuntimeException("Cannot get field 'id' because union is currently set to " + getFieldDesc(getSetField()).name);
+      throw new RuntimeException("Cannot get field 'conceptProperties' because union is currently set to " + getFieldDesc(getSetField()).name);
     }
   }
 
-  public void set_id(String value) {
+  public void set_conceptProperties(ConceptProperties value) {
     if (value == null) throw new NullPointerException();
-    setField_ = _Fields.ID;
+    setField_ = _Fields.CONCEPT_PROPERTIES;
     value_ = value;
   }
 
-  public boolean is_set_id() {
-    return setField_ == _Fields.ID;
+  public boolean is_set_conceptProperties() {
+    return setField_ == _Fields.CONCEPT_PROPERTIES;
   }
 
 
   public boolean equals(Object other) {
-    if (other instanceof IndividualTypeId) {
-      return equals((IndividualTypeId)other);
+    if (other instanceof InternetUsePropertyValue) {
+      return equals((InternetUsePropertyValue)other);
     } else {
       return false;
     }
   }
 
-  public boolean equals(IndividualTypeId other) {
+  public boolean equals(InternetUsePropertyValue other) {
     return other != null && getSetField() == other.getSetField() && getFieldValue().equals(other.getFieldValue());
   }
 
   @Override
-  public int compareTo(IndividualTypeId other) {
+  public int compareTo(InternetUsePropertyValue other) {
     int lastComparison = org.apache.thrift.TBaseHelper.compareTo(getSetField(), other.getSetField());
     if (lastComparison == 0) {
       return org.apache.thrift.TBaseHelper.compareTo(getFieldValue(), other.getFieldValue());

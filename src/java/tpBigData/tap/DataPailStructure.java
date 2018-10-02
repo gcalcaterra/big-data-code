@@ -1,6 +1,6 @@
-package tp1Parcial.tap;
+package tpBigData.tap;
 
-import tp1Parcial.schema.Data;
+import tpBigData.schema.Data;
 
 public class DataPailStructure extends ThriftPailStructure<Data> {
     @Override

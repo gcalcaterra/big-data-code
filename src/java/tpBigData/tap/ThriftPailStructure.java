@@ -1,4 +1,4 @@
-package tp1Parcial.tap;
+package tpBigData.tap;
 
 import com.backtype.hadoop.pail.PailStructure;
 import org.apache.thrift.TBase;

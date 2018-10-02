@@ -1,4 +1,4 @@
-package tp1Parcial.batchlayer;
+package tpBigData.batchlayer;
 
 import cascalog.ops.IdentityBuffer;
 import cascalog.ops.RandLong;
@@ -7,13 +7,14 @@ import com.backtype.cascading.tap.PailTap.PailTapOptions;
 import com.backtype.hadoop.pail.Pail;
 import com.backtype.hadoop.pail.PailSpec;
 import com.backtype.hadoop.pail.PailStructure;
+import com.twitter.maple.tap.StdoutTap;
 import jcascalog.Api;
 import jcascalog.Subquery;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import tp1Parcial.tap.DataPailStructure;
-import tp1Parcial.tap.SplitDataPailStructure;
+import tpBigData.tap.DataPailStructure;
+import tpBigData.tap.SplitDataPailStructure;
 
 import java.io.IOException;
 import java.util.HashMap;

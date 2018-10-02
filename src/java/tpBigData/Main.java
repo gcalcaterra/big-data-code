@@ -1,23 +1,24 @@
-package tp1Parcial;
+package tpBigData;
 
 import com.backtype.hadoop.pail.Pail;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import tp1Parcial.batchlayer.BatchWorkflow;
-import tp1Parcial.schema.Data;
-import tp1Parcial.schema.FactsEdge;
-import tp1Parcial.tap.DataPailStructure;
-import tp1Parcial.tap.SplitDataPailStructure;
+import tpBigData.batchlayer.BatchWorkflow;
+import tpBigData.schema.Data;
+import tpBigData.schema.FactsEdge;
+import tpBigData.tap.DataPailStructure;
+import tpBigData.tap.SplitDataPailStructure;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Date;
 
-import static tp1Parcial.batchlayer.BatchWorkflow.MASTER_ROOT;
-import static tp1Parcial.batchlayer.BatchWorkflow.batchWorkflow;
-import static tp1Parcial.test.DataProcess.makeFacts;
+import static tpBigData.batchlayer.BatchWorkflow.MASTER_ROOT;
+import static tpBigData.batchlayer.BatchWorkflow.batchWorkflow;
+import static tpBigData.servinglayer.BatchViews.batchViews;
+import static tpBigData.test.DataProcess.makeFacts;
 
 public class Main {
     public static void main(String args[]) throws Exception {
@@ -36,7 +37,8 @@ public class Main {
 
         initTestData(path);
         batchWorkflow();
-        showData();
+        batchViews();
+        //showData();
     }
 
     public static void initTestData(String path) throws Exception {

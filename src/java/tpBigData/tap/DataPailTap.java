@@ -1,4 +1,4 @@
-package tp1Parcial.tap;
+package tpBigData.tap;
 
 import com.backtype.cascading.tap.PailTap;
 import com.backtype.hadoop.pail.PailSpec;

@@ -1,7 +1,7 @@
-package tp1Parcial.test;
+package tpBigData.test;
 
 
-import tp1Parcial.schema.*;
+import tpBigData.schema.*;
 
 public class DataProcess {
 	
