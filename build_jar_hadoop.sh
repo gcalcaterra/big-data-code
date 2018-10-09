@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
-mvn clean compile assembly:single
+cd ./dfs-datastores/
+mvn clean install package
+
+cd ../batchlayer/
+mvn compile assembly:single
+
+cd ../speedlayer/
+mvn clean install package

@@ -1,0 +1,5 @@
+embed-server --std-out=echo --server-config=standalone.xml
+
+/subsystem=datasources/data-source=speedLayer1/:add(connection-url=jdbc:postgresql://localhost:5432/progweb,driver-name=postgres,jndi-name=java:jboss/datasources/speedLayer1,initial-pool-size=4,max-pool-size=64,min-pool-size=4,password=postgres,user-name=postgres)
+
+/subsystem=datasources/data-source=speedLayer2/:add(connection-url=jdbc:postgresql://localhost:5432/progweb,driver-name=postgres,jndi-name=java:jboss/datasources/speedLayer2,initial-pool-size=4,max-pool-size=64,min-pool-size=4,password=postgres,user-name=postgres)
