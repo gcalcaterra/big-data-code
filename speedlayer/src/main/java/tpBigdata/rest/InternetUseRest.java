@@ -3,6 +3,7 @@ package tpBigdata.rest;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import tpBigdata.ejb.InternetUseDAO;
+import tpBigdata.ejb.InternetUseViewDAO;
 import tpBigdata.model.InternetUse;
 import tpBigdata.model.InternetUseView;
 
@@ -35,6 +36,10 @@ public class InternetUseRest {
 
 	@EJB
 	private InternetUseDAO internetUseDAO;
+	
+	@EJB
+	private InternetUseViewDAO internetUseViewDAO;
+	
 	@Context
 	protected UriInfo uriInfo;
 
@@ -81,6 +86,44 @@ public class InternetUseRest {
 			throw new WebApplicationException(e);
 		}
 
+		
+		InternetUseView internetUseView = internetUseViewDAO.get(internetUse.getInternetUseId());
+		if (internetUseView != null) {
+			//Actualizar la suma
+			internetUseView.setSum(internetUseView.getSum() + internetUse.getUnits());
+			//Actualizar min
+			internetUseView.setUnitsMin(Math.min(internetUseView.getUnitsMin(), internetUse.getUnits()));
+			//Actualizar max
+			internetUseView.setUnitsMax(Math.max(internetUseView.getUnitsMax(), internetUse.getUnits()));
+			//Actualizar prom
+			//https://math.stackexchange.com/questions/95909/why-is-an-average-of-an-average-usually-incorrect
+			Double oldCount = (double)internetUseView.getCount();
+			Double allCount = oldCount + 1;
+			System.out.println("oldCount = " + oldCount);
+			System.out.println("allCount = " + allCount);
+			System.out.println("getAvg = " + internetUseView.getAvg());
+			Double oldAvg = (oldCount/allCount)*internetUseView.getAvg();
+			System.out.println((double)(1/2*23));
+			System.out.println("oldAvg " + oldAvg);
+			Double newAvg = (1/(allCount))*internetUse.getUnits();
+			System.out.println("newAvg " + newAvg);
+			internetUseView.setAvg((long) (oldAvg + newAvg));
+			System.out.println("Avg= " + internetUseView.getAvg());
+			//Actualizar cont
+			internetUseView.setCount(internetUseView.getCount()+1);
+			//Guardar
+			internetUseViewDAO.merge(internetUseView);
+		} else {
+			internetUseView = new InternetUseView();
+			internetUseView.setInternetUseId(internetUse.getInternetUseId());
+			internetUseView.setSum(internetUse.getUnits().longValue());
+			internetUseView.setUnitsMin(internetUse.getUnits().doubleValue());
+			internetUseView.setUnitsMax(internetUse.getUnits().doubleValue());
+			internetUseView.setAvg(internetUse.getUnits().longValue());
+			internetUseView.setCount((long)1);
+			internetUseViewDAO.persist(internetUseView);
+		}
+		
 		//Responde con estado 201 (Creado)
 		try {
 			UriBuilder resourcePathBuilder = UriBuilder.fromUri(uriInfo

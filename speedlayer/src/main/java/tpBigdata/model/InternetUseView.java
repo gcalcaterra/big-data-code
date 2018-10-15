@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="internetUse")
+@Table(name="internetUseView")
 public class InternetUseView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,6 +23,10 @@ public class InternetUseView implements Serializable {
     @Basic(optional = false)
     @Column(name = "count")
     private Long count;
+    
+    @Basic(optional = false)
+    @Column(name = "avg")    
+    private Long avg;
 
     @Basic(optional = false)
     @Column(name = "sum")
@@ -79,5 +83,15 @@ public class InternetUseView implements Serializable {
     public void setSum(Long sum) {
         this.sum = sum;
     }
+
+	public Long getAvg() {
+		return avg;
+	}
+
+	public void setAvg(Long avg) {
+		this.avg = avg;
+	}
+    
+    
 }
 
