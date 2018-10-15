@@ -99,16 +99,9 @@ public class InternetUseRest {
 			//https://math.stackexchange.com/questions/95909/why-is-an-average-of-an-average-usually-incorrect
 			Double oldCount = (double)internetUseView.getCount();
 			Double allCount = oldCount + 1;
-			System.out.println("oldCount = " + oldCount);
-			System.out.println("allCount = " + allCount);
-			System.out.println("getAvg = " + internetUseView.getAvg());
 			Double oldAvg = (oldCount/allCount)*internetUseView.getAvg();
-			System.out.println((double)(1/2*23));
-			System.out.println("oldAvg " + oldAvg);
 			Double newAvg = (1/(allCount))*internetUse.getUnits();
-			System.out.println("newAvg " + newAvg);
 			internetUseView.setAvg((long) (oldAvg + newAvg));
-			System.out.println("Avg= " + internetUseView.getAvg());
 			//Actualizar cont
 			internetUseView.setCount(internetUseView.getCount()+1);
 			//Guardar
