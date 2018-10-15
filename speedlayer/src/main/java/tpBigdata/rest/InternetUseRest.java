@@ -102,7 +102,7 @@ public class InternetUseRest {
 			Double oldAvg = (oldCount/allCount)*internetUseView.getAvg();
 			Double newAvg = (1/(allCount))*internetUse.getUnits();
 			internetUseView.setAvg((long) (oldAvg + newAvg));
-			//Actualizar cont
+			//Actualizar count
 			internetUseView.setCount(internetUseView.getCount()+1);
 			//Guardar
 			internetUseViewDAO.merge(internetUseView);
