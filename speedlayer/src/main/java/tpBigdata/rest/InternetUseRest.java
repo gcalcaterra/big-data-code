@@ -86,6 +86,7 @@ public class InternetUseRest {
 			Double totalUnitsMin = Math.min(servingLayerUnitsMin, speedLayerUnitsMin);
 			mapaResultado.put("unitsMinUnion", totalUnitsMin);
 			
+			
 			return Response.ok(mapaResultado).build();
 
 		} catch (IOException e) {
