@@ -2,9 +2,15 @@ package tpBigdata.rest;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.util.Bytes;
 import tpBigdata.ejb.InternetUseDAO;
 import tpBigdata.model.InternetUse;
-import tpBigdata.model.InternetUseView;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -20,15 +26,12 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.util.UUID.randomUUID;
 
 
 @Path("internetUse")
-@Produces("application/json")
-@Consumes("application/json")
 @RequestScoped
 public class InternetUseRest {
 	public static final String CSV_DATA = "/tmp/data/";
@@ -39,22 +42,46 @@ public class InternetUseRest {
 	protected UriInfo uriInfo;
 
 	@GET
-	@Path("/")
-	public Response consultar() throws WebApplicationException{
-		List<InternetUseView> listEntity = null;
-		Long total = null;
-		total = internetUseDAO.total();
-		listEntity = internetUseDAO.lista();
-		Map<String,Object> mapaResultado= new HashMap<>();
-		mapaResultado.put("total", total);
-		mapaResultado.put("lista", listEntity);
+	@Path("/{internetUseId}")
+	@Produces("application/json")
+	public Response consultarPorId(@PathParam("internetUseId") String internetUseId) throws WebApplicationException {
+		String nombreTabla = "internetUse";
 
-		return Response.ok(mapaResultado).build();
+		Map<String,Object> mapaResultado= new HashMap<>();
+		Configuration conf = HBaseConfiguration.create();
+		Connection conexion;
+
+		try {
+			conexion = ConnectionFactory.createConnection(conf);
+			Table tabla = conexion.getTable(TableName.valueOf(nombreTabla));
+
+			Get g = new Get(Bytes.toBytes(internetUseId));
+			Result result = tabla.get(g);
+
+			for (Cell celda : result.rawCells()) {
+				//System.out.println("Familia: " + Bytes.toString(CellUtil.cloneFamily(celda)));
+				//String row = Bytes.toString(CellUtil.cloneRow(celda));
+				String qualifier = Bytes.toString(CellUtil.cloneQualifier(celda));
+				String value = Bytes.toString(CellUtil.cloneValue(celda));
+
+				mapaResultado.put(qualifier, value);
+			}
+
+			//Aqui consultar del postgres...
+
+			return Response.ok(mapaResultado).build();
+
+		} catch (IOException e) {
+			throw new WebApplicationException(e);
+		}
+
 	}
 
 	@POST
 	@Path("/")
-	public Response agregar(InternetUse internetUse) throws WebApplicationException {
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response agregar(InternetUse... internetUses) throws WebApplicationException {
 		//Guarda el resultado en un archivo .csv
 		File archivoCSV = new File(CSV_DATA + randomUUID() + ".csv");
 		CSVPrinter csvPrinter;
@@ -66,28 +93,25 @@ public class InternetUseRest {
 					.withHeader("indic_is", "ind_type", "geo\\time", "year", "percent")
 					.print(archivoCSV, Charset.forName("UTF-8"));
 
-			ArrayList<String> record = new ArrayList<>();
-
-			record.add(internetUse.getInternetUseId());
-			record.add(internetUse.getIndividualTypeId());
-			record.add(internetUse.getGeographyId());
-			record.add(Integer.toString(internetUse.getYear()));
-			record.add(Integer.toString(internetUse.getUnits()));
-
-			csvPrinter.printRecord(record);
+			for (InternetUse internetUse : internetUses) {
+				ArrayList<String> record = new ArrayList<>();
+				record.add(internetUse.getInternetUseId());
+				record.add(internetUse.getIndividualTypeId());
+				record.add(internetUse.getGeographyId());
+				record.add(Integer.toString(internetUse.getYear()));
+				record.add(Integer.toString(internetUse.getUnits()));
+				csvPrinter.printRecord(record);
+			}
 			csvPrinter.close();
 
-		} catch (IOException e) {
-			throw new WebApplicationException(e);
-		}
+			//Aqui insertar al postgres...
 
-		//Responde con estado 201 (Creado)
-		try {
+			//Responde con estado 201 (Creado)
 			UriBuilder resourcePathBuilder = UriBuilder.fromUri(uriInfo
 					.getAbsolutePath());
 
 			URI resourceUri = resourcePathBuilder
-					.path(URLEncoder.encode(internetUse.getInternetUseId(), "UTF-8")).build();
+					.path(URLEncoder.encode("internetUse", "UTF-8")).build();
 			return Response.created(resourceUri).build();
 		} catch (Exception e) {
 			throw new WebApplicationException(e);
