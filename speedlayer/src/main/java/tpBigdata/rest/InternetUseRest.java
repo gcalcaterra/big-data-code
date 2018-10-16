@@ -74,7 +74,13 @@ public class InternetUseRest {
 			}
 
 			//Aqui consultar del postgres...
-
+			//Max
+			Double servingLayerUnitsMax = Double.valueOf((String) mapaResultado.get("?unitsMax"));
+			Double speedLayerUnitsMax = internetUseViewDAO.get(internetUseId).getUnitsMax();
+			System.out.println(speedLayerUnitsMax);
+			Double totalUnitsMax = Math.max(servingLayerUnitsMax, speedLayerUnitsMax);
+			
+			mapaResultado.put("unitsMaxUnion", totalUnitsMax);
 			return Response.ok(mapaResultado).build();
 
 		} catch (IOException e) {
