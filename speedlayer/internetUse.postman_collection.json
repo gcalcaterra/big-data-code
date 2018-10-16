@@ -1,0 +1,42 @@
+{
+	"variables": [],
+	"info": {
+		"name": "internetUse",
+		"_postman_id": "5d1be09e-b728-97e8-3dc9-8edc3dee1aa4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "internetUsePost",
+			"request": {
+				"url": "http://localhost:8080/speedlayer/internetUse",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n    \"internetUseId\": \"IIH_IF\",\n    \"individualTypeId\": \"Type_XXS\",\n    \"geographyId\": \"Geograpy_YY\",\n    \"year\": 2012,\n    \"units\": 60\n\n},{\n    \"internetUseId\": \"IIH_IF\",\n    \"individualTypeId\": \"Type_XXS\",\n    \"geographyId\": \"Geograpy_YY\",\n    \"year\": 2013,\n    \"units\": 10\n}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-hbase",
+			"request": {
+				"url": "http://localhost:8080/speedlayer/internetUse/I_IHIF",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
