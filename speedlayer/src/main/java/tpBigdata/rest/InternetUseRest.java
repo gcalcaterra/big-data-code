@@ -77,10 +77,15 @@ public class InternetUseRest {
 			//Max
 			Double servingLayerUnitsMax = Double.valueOf((String) mapaResultado.get("?unitsMax"));
 			Double speedLayerUnitsMax = internetUseViewDAO.get(internetUseId).getUnitsMax();
-			System.out.println(speedLayerUnitsMax);
 			Double totalUnitsMax = Math.max(servingLayerUnitsMax, speedLayerUnitsMax);
-			
 			mapaResultado.put("unitsMaxUnion", totalUnitsMax);
+
+			//Min
+			Double servingLayerUnitsMin = Double.valueOf((String) mapaResultado.get("?unitsMin"));
+			Double speedLayerUnitsMin = internetUseViewDAO.get(internetUseId).getUnitsMin();
+			Double totalUnitsMin = Math.min(servingLayerUnitsMin, speedLayerUnitsMin);
+			mapaResultado.put("unitsMinUnion", totalUnitsMin);
+			
 			return Response.ok(mapaResultado).build();
 
 		} catch (IOException e) {
